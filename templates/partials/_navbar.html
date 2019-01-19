@@ -17,16 +17,7 @@
                         class="nav-item mr-3"
                     {% endif %}
                 >
-                    <a class="nav-link" href="{% url 'index' %}">Home</a>
-                </li>
-                <li
-                    {% if "buy" in request.path %}
-                        class="nav-item active mr-3"
-                    {% else %}
-                        class="nav-item mr-3"
-                    {% endif %}
-                >
-                    <a class="nav-link" href="{% url 'buy' %}">Buy</a>
+                    <a class="nav-link" href="{% url 'index' %}">Compra</a>
                 </li>
                 <li
                     {% if "invest" in request.path %}
@@ -35,22 +26,23 @@
                         class="nav-item mr-3"
                     {% endif %}
                 >
-                    <a class="nav-link" href="{% url 'invest' %}">Invest</a>
+                    <a class="nav-link" href="{% url 'invest' %}">Invierte</a>
                 </li>
             </ul>
-
+            <!--
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item mr-3">
-                    <a class="nav-link" href="register.html">
-                        <i class="fas fa-user-plus"></i> Register</a>
+                    <a class="nav-link" href="{% url 'register' %}">
+                        <i class="fas fa-user-plus"></i> Regístrate</a>
                 </li>
                 <li class="nav-item mr-3">
-                    <a class="nav-link" href="login.html">
+                    <a class="nav-link" href="{% url 'login' %}">
                         <i class="fas fa-sign-in-alt"></i>
 
-                        Login</a>
+                        Log in</a>
                 </li>
             </ul>
+            -->
         </div>
     </div>
 </nav>

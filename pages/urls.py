@@ -5,6 +5,8 @@ import pages.views as views
 urlpatterns = [
 
     path("", views.index, name="index"),
-    path("buy", views.buy, name="buy"),
     path("invest", views.invest, name="invest"),
+    path("search", views.search, name="search"),
+    path("login", views.login, name="login"),
+    path("register", views.register, name="register"),
 ]
