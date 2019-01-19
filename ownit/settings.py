@@ -25,7 +25,7 @@ SECRET_KEY = secret.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'www.ownit-barcelona.es']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'www.ownit-barcelona.es', '46.101.43.45']
 
 # Application definition
 
