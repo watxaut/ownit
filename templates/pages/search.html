@@ -45,11 +45,12 @@
     <div class="container">
         <nav aria-label="breadcrumb">
 
-            <section id="showcase2" style="background: #c0c0c0;">
+            {% if not missing %}
+            <section id="showcase2" style="border-style: solid; border-color: grey;">
                 <div class="container">
                     <div>
                         <div class="overlay p-5">
-                            {% if not missing %}
+
                             <h2 class="text-left">El precio del piso al que puedes acceder es de</h2>
                             <h1 class="text-center" style="margin-bottom:50px; margin-top:50px; font-size:3.5rem">
                                 <strong>{{value_home | intcomma}}€</strong></h1>
@@ -62,19 +63,20 @@
                                 la vivienda ya sería tuyo!</h3>
 
                             {% else %}
-                                <h3 style="font-size:1.2rem">Pero tu depósito de {{dep | intcomma}}€ no llega al mínimo de 5% ({{percentage}}%). Con tu salario, necesitarías al menos un depósito de {{dep_suf}}€</h3>
+                            <h3 style="font-size:1.2rem">Pero tu depósito de {{dep | intcomma}}€ no llega al mínimo de
+                                5% ({{percentage}}%). Con tu salario, necesitarías al menos un depósito de
+                                {{dep_suf}}€</h3>
 
-                            {% endif %}
-
-                            {% else %}
-                            <h2>Datos insuficientes, vuelve a probar rellenando todos los campos</h2>
                             {% endif %}
                         </div>
                     </div>
                 </div>
-
-
             </section>
+            {% else %}
+            <section id="showcase4" style="margin=40px;">
+                <h2 style="margin-bottom:20px;">Datos insuficientes, vuelve a probar rellenando todos los campos</h2>
+            </section>
+            {% endif %}
 
             {% if not missing %}
             <section id="showcase3" style="padding: 70px;">
