@@ -36,18 +36,27 @@ def register(request):
 
 def search(request):
     cntx = {}
-
-    if request.GET["ingresos"] and request.GET["deposito"] and request.GET["ciudad"]:
+    try:
         dep = float(request.GET["deposito"])
         ing = float(request.GET["ingresos"])
         city = request.GET["ciudad"]
         value_home = dep + (ing * 8)  # * config.d_city[city]
+        value_bank = 4.5 * ing + dep
         cntx["missing"] = False
-    else:
+        cntx["value_home"] = int(value_home)
+        cntx["value_bank"] = int(value_bank)
+        cntx["dep"] = int(dep)
+
+        perc = dep / value_home
+        cntx["perc_insuficient"] = perc < 0.05
+        cntx["dep_suf"] = int(0.05 * value_home)
+
+        cntx["percentage"] = round(float(perc * 100), 2)
+    except:
         cntx["missing"] = True
         value_home = 0
-
-    cntx["value_home"] = int(value_home)
+        value_bank = 0
+        dep = 0
 
     return render(request, 'pages/search.html', context=cntx)
 
@@ -66,7 +75,7 @@ def contact(request):
                 "The user with name {name} with email {email}, phone number {phone} is interested and sent the following message:\n{message}".format(
                     name=name, email=email, phone=phone, message=message),
                 EMAIL_USER,
-                (EMAIL_USER, ),
+                (EMAIL_USER,),
                 fail_silently=True
             )
 

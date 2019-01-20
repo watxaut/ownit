@@ -3,53 +3,97 @@
 {% block content %}
 
 
-  <section id="showcase-inner" class="showcase-search text-white py-5">
+<section id="showcase-inner" class="showcase-search text-white py-5">
     <div class="container">
-      <div class="row text-center">
-        <div class="col-md-12">
-          <form action="{% url 'search' %}">
-              <!-- Form Row 1 -->
-              <div class="form-row">
-                <div class="col-md-4 mb-3">
-                  <label class="sr-only">deposito</label>
-                  <input type="number" name="deposito" class="form-control" placeholder="Depósito disponible (€)">
-                </div>
+        <div class="row text-center">
+            <div class="col-md-12">
+                <form action="{% url 'search' %}" style="padding-top: 30px;">
+                    <!-- Form Row 1 -->
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label class="sr-only">deposito</label>
+                            <input type="number" name="deposito" class="form-control"
+                                   placeholder="Depósito disponible (€)">
+                        </div>
 
-                <div class="col-md-4 mb-3">
-                  <label class="sr-only">City</label>
-                  <input type="number" name="ingresos" class="form-control" placeholder="Ingreso bruto al año (€)">
-                </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="sr-only">City</label>
+                            <input type="number" name="ingresos" class="form-control"
+                                   placeholder="Ingreso bruto al año (€)">
+                        </div>
 
-                <div class="col-md-4 mb-3">
-                  <label class="sr-only">State</label>
-                  <select name="ciudad" class="form-control">
-                    <option selected="true" disabled="disabled">Ciudad</option>
-                    <option value="BCN">Barcelona</option>
-                    <option value="MD">Madrid</option>
-                    <option value="BLB">Bilbao</option>
-                    <option value="VAL">Valencia</option>
-                  </select>
-                </div>
-              </div>
-              <button class="btn btn-secondary btn-block mt-4" type="submit">Vuelve a calcular tu renta!</button>
-            </form>
+                        <div class="col-md-4 mb-3">
+                            <label class="sr-only">State</label>
+                            <select name="ciudad" class="form-control">
+                                <option selected="true" disabled="disabled">Ciudad</option>
+                                <option value="BCN">Barcelona</option>
+                                <option value="MD">Madrid</option>
+                                <option value="BLB">Bilbao</option>
+                                <option value="VAL">Valencia</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary btn-block mt-4" type="submit">Vuelve a calcular tu renta!</button>
+                </form>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
+</section>
 
-  <!-- Breadcrumb -->
-  <section id="bc" class="mt-3">
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
     <div class="container">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <nav aria-label="breadcrumb">
+
+            <section id="showcase2" style="background: #c0c0c0;">
+                <div class="container">
+                    <div>
+                        <div class="overlay p-5">
+                            {% if not missing %}
+                            <h2 class="text-left">El precio del piso al que puedes acceder es de</h2>
+                            <h1 class="text-center" style="margin-bottom:50px; margin-top:50px; font-size:3.5rem">
+                                <strong>{{value_home | intcomma}}€</strong></h1>
+
+                            {% if not perc_insuficient %}
+                            <h3 style="font-size:1rem">Comparado con los {{value_bank | intcomma}}€ que te daria el
+                                banco</h3>
+
+                            <h3 style="font-size:1.2rem">Con tu depósito de {{dep | intcomma}}€, un {{percentage}}% de
+                                la vivienda ya sería tuyo!</h3>
+
+                            {% else %}
+                                <h3 style="font-size:1.2rem">Pero tu depósito de {{dep | intcomma}}€ no llega al mínimo de 5% ({{percentage}}%). Con tu salario, necesitarías al menos un depósito de {{dep_suf}}€</h3>
+
+                            {% endif %}
+
+                            {% else %}
+                            <h2>Datos insuficientes, vuelve a probar rellenando todos los campos</h2>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+
+            </section>
+
             {% if not missing %}
-            <h1>El precio del piso al que puedes acceder es de {{value_home | intcomma}}€</h1>
+            <section id="showcase3" style="padding: 70px;">
+
+                <div class="container">
+                    <h3 class="text-center mb-3">¿Estás interesado?</h3>
+                    <form action="https://floreche.typeform.com/to/hX04X8">
+                        <button class="btn btn-primary btn-block mt-4" type="submit">Haz nuestra encuesta y nos
+                            pondremos en contacto contigo!
+                        </button>
+                    </form>
+                </div>
+            </section>
             {% endif %}
-        </ol>
-      </nav>
+
+
+        </nav>
     </div>
-  </section>
+</section>
 
 
 {% endblock %}
